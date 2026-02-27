@@ -31,6 +31,6 @@ Spring 2026 goals
 
 # Primary Skill Building
 
-- [ ] bioinformatics 
+- [ ] bioinformatics
 - [ ] something
 - [ ] something
