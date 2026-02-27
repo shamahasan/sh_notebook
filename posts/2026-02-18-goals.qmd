@@ -1,0 +1,36 @@
+---
+title: "Spring Semester Goals"
+author: Shama Hasan
+date: 2026-02-27
+categories: [goals, daily-entries]
+description: "Spring 2026 Goals"
+image: ""
+---
+
+# Overview
+
+Spring 2026 goals
+
+## Goals
+
+### Writing and Manuscripts 
+
+1. Something
+
+### Analysis and Benchwork
+
+1. Something
+
+### Funding
+
+1. Submit Charles Center Summer Grant proposal
+
+### Other
+
+1. Set up digital notebook
+
+# Primary Skill Building
+
+- [ ] something
+- [ ] something
+- [ ] something
