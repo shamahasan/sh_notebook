@@ -15,11 +15,16 @@ Spring 2026 goals
 
 ### Writing and Manuscripts 
 
-1. Something something 
+1. Start writing introduction section of apicomplexa paper
+2. Outline and plan for honors thesis
+3. Frequent lab notebook entries detailing my independent and lab research
 
 ### Analysis and Benchwork
 
-1. Something
+1. Continue with BAT analysis and gene alignments
+2. Group / collaborative genome lab project
+3. Develop microscope and lab procedure expertise 
+4. Maintain and document ciliate cultures
 
 ### Funding
 
@@ -28,9 +33,18 @@ Spring 2026 goals
 ### Other
 
 1. Set up digital notebook
+2. Determine timeline for summer and senior year honors research
+
+### Planned Posts
+
+- [ ] Updating my Notebook 
+- [ ] Apicomplexan Genome Evolution 
+- [ ] CLI Tutorial 
+    - basic intro tutorial, index of commands, etc.
+- [ ] Microscope image gallery 
 
 # Primary Skill Building
 
-- [ ] bioinformatics
-- [ ] something
-- [ ] something
+- [ ] command line interface (CLI)
+- [ ] wet lab procedures (cell cultures, PCR, etc.)
+- [ ] writing and documentation 
