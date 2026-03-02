@@ -1,9 +1,9 @@
 ---
-title: "Spring Semester Goals"
+title: "Updating My Notebook"
 author: Shama Hasan
-date: 2026-02-27
+date: 2026-03-01
 categories: [goals, daily-entries]
-description: "Spring 2026 Goals"
+description: "How to update my notebook using VS Code and Github"
 image: ""
 ---
 
