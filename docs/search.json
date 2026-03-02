@@ -14,11 +14,46 @@
     "text": "How to Explore This Notebook\n\nSearch: Use the search box to find entries by keywords\nFilter by Category: Click on categories to filter entries by project or topic\nSort: Sort entries by date, title, or other criteria\nBrowse: Scroll through all entries in chronological order"
   },
   {
-    "objectID": "posts/updating_my_notebook.html",
-    "href": "posts/updating_my_notebook.html",
-    "title": "Updating My Notebook",
+    "objectID": "posts/March_Daily_Entries.html",
+    "href": "posts/March_Daily_Entries.html",
+    "title": "March 2026 Daily Entries",
     "section": "",
-    "text": "Step-by-Step\n\nStep 1: Prepare terminal\n\nTerminal &gt; conda activate quarto\ncd Desktop\ncd XLab_AP\ncd Lab_Notebook_Peronal_Site\n\nShortcut: “cd Desk” tab autofills the rest of the folder name\n\n\nStep 2: Edit Post\n\nOpen Lab_Notebook_Peronal_Site folder in VS Code\nEdit or create .qmd file under “posts” subfolder\nSave file\n\n\n\nStep 3: Upload\n\nTerminal &gt; quarto render\nGitHub &gt; Code &gt; Add file &gt; Upload files\nUpload “posts” and “docs” subfolders\nAdd descriptive note (i.e. “Updating Notebook Post”) &gt; Commit changes\nWait until commit has fully loaded and has a check mark\n\nNote: different method due to inabililty to install git\n\n\nStep 4: Access Website\n\nGitHub &gt; Settings &gt; Pages\nClick link to website"
+    "text": "Downloading annotated apicomplexan genomes.\n\n\n\n\ngather apicomplexan genomic data in BAT from NCBI GenBank Taxonomy page\n\nfocus on taxon and accession number\n\ndownload genomes\nwrite code to efficiently download all genomes at once\n\n\n\n\nDescribe the procedures followed.\n\n\n\nPresent your data here: BAT\n\n\n\nimport os\nimport pandas as pd \n\nos.chdir(\"/Users/shamahasan/Desktop/Apicomplexa\")\nprint(\"Files will download to:\", os.getcwd())\n\napi = pd.read_csv(\"apicomplexa.tsv\", sep=\"\\t\")\napi = api[[\"Taxon\", \"Accession_Number\"]]\nfor taxon, accession in zip(api[\"Taxon\"], api[\"Accession_Number\"]):\n    taxon = taxon.replace(\" \", \"_\")\n\n    cmd = f\"datasets download genome accession {accession} --include cds --filename {taxon}.WGS.CDS.zip\"\n\n    #print(cmd)\n    os.system(cmd)"
+  },
+  {
+    "objectID": "posts/March_Daily_Entries.html#overview",
+    "href": "posts/March_Daily_Entries.html#overview",
+    "title": "March 2026 Daily Entries",
+    "section": "",
+    "text": "Downloading annotated apicomplexan genomes."
+  },
+  {
+    "objectID": "posts/March_Daily_Entries.html#goals",
+    "href": "posts/March_Daily_Entries.html#goals",
+    "title": "March 2026 Daily Entries",
+    "section": "",
+    "text": "gather apicomplexan genomic data in BAT from NCBI GenBank Taxonomy page\n\nfocus on taxon and accession number\n\ndownload genomes\nwrite code to efficiently download all genomes at once"
+  },
+  {
+    "objectID": "posts/March_Daily_Entries.html#procedures",
+    "href": "posts/March_Daily_Entries.html#procedures",
+    "title": "March 2026 Daily Entries",
+    "section": "",
+    "text": "Describe the procedures followed."
+  },
+  {
+    "objectID": "posts/March_Daily_Entries.html#data",
+    "href": "posts/March_Daily_Entries.html#data",
+    "title": "March 2026 Daily Entries",
+    "section": "",
+    "text": "Present your data here: BAT"
+  },
+  {
+    "objectID": "posts/March_Daily_Entries.html#code-block",
+    "href": "posts/March_Daily_Entries.html#code-block",
+    "title": "March 2026 Daily Entries",
+    "section": "",
+    "text": "import os\nimport pandas as pd \n\nos.chdir(\"/Users/shamahasan/Desktop/Apicomplexa\")\nprint(\"Files will download to:\", os.getcwd())\n\napi = pd.read_csv(\"apicomplexa.tsv\", sep=\"\\t\")\napi = api[[\"Taxon\", \"Accession_Number\"]]\nfor taxon, accession in zip(api[\"Taxon\"], api[\"Accession_Number\"]):\n    taxon = taxon.replace(\" \", \"_\")\n\n    cmd = f\"datasets download genome accession {accession} --include cds --filename {taxon}.WGS.CDS.zip\"\n\n    #print(cmd)\n    os.system(cmd)"
   },
   {
     "objectID": "posts/2026-02-18-goals.html",
@@ -35,11 +70,18 @@
     "text": "Something something\n\n\n\n\n\nSomething\n\n\n\n\n\nSubmit Charles Center Summer Grant proposal\n\n\n\n\n\nSet up digital notebook"
   },
   {
+    "objectID": "posts/updating_my_notebook.html",
+    "href": "posts/updating_my_notebook.html",
+    "title": "Updating My Notebook",
+    "section": "",
+    "text": "Step-by-Step\n\nStep 1: Prepare terminal\n\nTerminal &gt; conda activate quarto\ncd Desktop\ncd XLab_AP\ncd Lab_Notebook_Peronal_Site\n\nShortcut: “cd Desk” tab autofills the rest of the folder name\n\n\nStep 2: Edit Post\n\nOpen Lab_Notebook_Peronal_Site folder in VS Code\nEdit or create .qmd file under “posts” subfolder\nSave file\n\n\n\nStep 3: Upload\n\nTerminal &gt; quarto render\nGitHub &gt; Code &gt; Add file &gt; Upload files\nUpload “posts” and “docs” subfolders\nAdd descriptive note (i.e. “Updating Notebook Post”) &gt; Commit changes\nWait until commit has fully loaded and has a check mark\n\nNote: different method due to inabililty to install git\n\n\nStep 4: Access Website\n\nGitHub &gt; Settings &gt; Pages\nClick link to website"
+  },
+  {
     "objectID": "index.html#about-me",
     "href": "index.html#about-me",
     "title": "Shama Hasan",
     "section": "About Me",
-    "text": "About Me\nYour info!\nHere you’ll find information about my research, outreach and education activities, and my comprehensive lab notebook documenting ongoing projects and findings."
+    "text": "About Me\nYour info!\nI am an undergraduate at William & Mary (Class of 2027) majoring in CAMS (Computational & Applied Mathematics & Statistics) on the Mathematical Biology track and minoring in data science. My research interests involve applying computational techniques to biological questions in molecular biology and virology!\nHere you’ll find information about my research, outreach and education activities, and my comprehensive lab notebook documenting ongoing projects and findings."
   },
   {
     "objectID": "index.html#contact",

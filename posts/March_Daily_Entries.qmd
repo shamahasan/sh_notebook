@@ -1,0 +1,59 @@
+---
+title: "March 2026 Daily Entries"
+author: Shama Hasan
+date: 2026-03-01
+categories: [daily-entries]
+description: "March 2026 notebook entries"
+image: ""
+---
+
+# March 1 
+
+## Overview
+
+Downloading annotated apicomplexan genomes. 
+
+## Goals
+
+- gather apicomplexan genomic data in BAT from NCBI GenBank Taxonomy page
+    - focus on taxon and accession number 
+- download genomes 
+- write code to efficiently download all genomes at once 
+
+## Procedures
+
+Describe the procedures followed.
+
+## Data
+
+Present your data here: BAT 
+
+## Code Block
+
+```python
+import os
+import pandas as pd 
+
+os.chdir("/Users/shamahasan/Desktop/Apicomplexa")
+print("Files will download to:", os.getcwd())
+
+api = pd.read_csv("apicomplexa.tsv", sep="\t")
+api = api[["Taxon", "Accession_Number"]]
+for taxon, accession in zip(api["Taxon"], api["Accession_Number"]):
+    taxon = taxon.replace(" ", "_")
+
+    cmd = f"datasets download genome accession {accession} --include cds --filename {taxon}.WGS.CDS.zip"
+
+    #print(cmd)
+    os.system(cmd)
+```
+
+# Discussion
+
+Discuss findings, issues encountered, and next steps.
+
+# Next Steps
+
+- [ ] Task 1
+- [ ] Task 2
+- [ ] Task 3
