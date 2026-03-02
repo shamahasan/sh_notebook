@@ -18,14 +18,7 @@
     "href": "posts/updating_my_notebook.html",
     "title": "Updating My Notebook",
     "section": "",
-    "text": "Spring 2026 goals\n\n\n\n\n\nSomething something\n\n\n\n\n\nSomething\n\n\n\n\n\nSubmit Charles Center Summer Grant proposal\n\n\n\n\n\nSet up digital notebook"
-  },
-  {
-    "objectID": "posts/updating_my_notebook.html#goals",
-    "href": "posts/updating_my_notebook.html#goals",
-    "title": "Updating My Notebook",
-    "section": "",
-    "text": "Something something\n\n\n\n\n\nSomething\n\n\n\n\n\nSubmit Charles Center Summer Grant proposal\n\n\n\n\n\nSet up digital notebook"
+    "text": "Step-by-Step\n\nStep 1: Prepare terminal\n\nTerminal &gt; conda activate quarto\ncd Desktop\ncd XLab_AP\ncd Lab_Notebook_Peronal_Site\n\nShortcut: “cd Desk” tab autofills the rest of the folder name\n\n\nStep 2: Edit Post\n\nOpen Lab_Notebook_Peronal_Site folder in VS Code\nEdit or create .qmd file under “posts” subfolder\nSave file\n\n\n\nStep 3: Upload\n\nTerminal &gt; quarto render\nGitHub &gt; Code &gt; Add file &gt; Upload files\nUpload “posts” and “docs” subfolders\nAdd descriptive note (i.e. “Updating Notebook Post”) &gt; Commit changes\nWait until commit has fully loaded and has a check mark\n\nNote: different method due to inabililty to install git\n\n\nStep 4: Access Website\n\nGitHub &gt; Settings &gt; Pages\nClick link to website"
   },
   {
     "objectID": "posts/2026-02-18-goals.html",

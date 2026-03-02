@@ -2,35 +2,39 @@
 title: "Updating My Notebook"
 author: Shama Hasan
 date: 2026-03-01
-categories: [goals, daily-entries]
-description: "How to update my notebook using VS Code and Github"
+categories: [guidelines]
+description: "How to update my notebook!"
 image: ""
 ---
 
-# Overview
+# Step-by-Step
 
-Spring 2026 goals
+### Step 1: Prepare terminal
 
-## Goals
+i. Terminal > conda activate quarto
+ii. cd Desktop
+iii. cd XLab_AP
+iv. cd Lab_Notebook_Peronal_Site 
 
-### Writing and Manuscripts 
+Shortcut: "cd Desk" tab autofills the rest of the folder name
 
-1. Something something 
+### Step 2: Edit Post
 
-### Analysis and Benchwork
+i. Open Lab_Notebook_Peronal_Site folder in VS Code 
+ii. Edit or create .qmd file under "posts" subfolder
+iii. Save file 
 
-1. Something
+### Step 3: Upload
 
-### Funding
+i. Terminal > quarto render
+ii. GitHub > Code > Add file > Upload files 
+iii. Upload "posts" and "docs" subfolders 
+iv. Add descriptive note (i.e. "Updating Notebook Post") > Commit changes
+v. Wait until commit has fully loaded and has a check mark
 
-1. Submit Charles Center Summer Grant proposal
+Note: different method due to inabililty to install git 
 
-### Other
+### Step 4: Access Website
 
-1. Set up digital notebook
-
-# Primary Skill Building
-
-- [ ] bioinformatics
-- [ ] something
-- [ ] something
+i. GitHub > Settings > Pages 
+ii. Click link to website
