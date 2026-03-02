@@ -18,7 +18,7 @@
     "href": "posts/March_Daily_Entries.html",
     "title": "March 2026 Daily Entries",
     "section": "",
-    "text": "Downloading annotated apicomplexan genomes.\n\n\n\n\ngather apicomplexan genomic data in BAT from NCBI GenBank Taxonomy page\n\nfocus on taxon and accession number\n\ndownload genomes\nwrite code to efficiently download all genomes at once\n\n\n\n\nDescribe the procedures followed.\n\n\n\nPresent your data here: BAT\n\n\n\nimport os\nimport pandas as pd \n\nos.chdir(\"/Users/shamahasan/Desktop/Apicomplexa\")\nprint(\"Files will download to:\", os.getcwd())\n\napi = pd.read_csv(\"apicomplexa.tsv\", sep=\"\\t\")\napi = api[[\"Taxon\", \"Accession_Number\"]]\nfor taxon, accession in zip(api[\"Taxon\"], api[\"Accession_Number\"]):\n    taxon = taxon.replace(\" \", \"_\")\n\n    cmd = f\"datasets download genome accession {accession} --include cds --filename {taxon}.WGS.CDS.zip\"\n\n    #print(cmd)\n    os.system(cmd)"
+    "text": "Downloading annotated apicomplexan genomes.\n\n\n\n\ngather apicomplexan genomic data in BAT from NCBI GenBank Taxonomy page\n\nfocus on taxon and accession number\n\ndownload genomes\nwrite code to efficiently download all genomes at once\n\n\n\n\nDescribe the procedures followed.\n\n\n\nPresent your data here: BAT\n\n\n\nimport os\nimport pandas as pd \n\nos.chdir(\"/Users/shamahasan/Desktop/Apicomplexa\")\nprint(\"Files will download to:\", os.getcwd())\n\napi = pd.read_csv(\"apicomplexa.tsv\", sep=\"\\t\")\napi = api[[\"Taxon\", \"Accession_Number\"]]\nfor taxon, accession in zip(api[\"Taxon\"], api[\"Accession_Number\"]):\n    taxon = taxon.replace(\" \", \"_\")\n\n    cmd = f\"datasets download genome accession {accession} --include cds --filename {taxon}.WGS.CDS.zip\"\n\n    #print(cmd)\n    os.system(cmd)\n\n\n\nDiscuss findings, issues encountered, and next steps.\n\n\n\n\nTask 1\nTask 2\nTask 3"
   },
   {
     "objectID": "posts/March_Daily_Entries.html#overview",
@@ -56,6 +56,20 @@
     "text": "import os\nimport pandas as pd \n\nos.chdir(\"/Users/shamahasan/Desktop/Apicomplexa\")\nprint(\"Files will download to:\", os.getcwd())\n\napi = pd.read_csv(\"apicomplexa.tsv\", sep=\"\\t\")\napi = api[[\"Taxon\", \"Accession_Number\"]]\nfor taxon, accession in zip(api[\"Taxon\"], api[\"Accession_Number\"]):\n    taxon = taxon.replace(\" \", \"_\")\n\n    cmd = f\"datasets download genome accession {accession} --include cds --filename {taxon}.WGS.CDS.zip\"\n\n    #print(cmd)\n    os.system(cmd)"
   },
   {
+    "objectID": "posts/March_Daily_Entries.html#discussion",
+    "href": "posts/March_Daily_Entries.html#discussion",
+    "title": "March 2026 Daily Entries",
+    "section": "",
+    "text": "Discuss findings, issues encountered, and next steps."
+  },
+  {
+    "objectID": "posts/March_Daily_Entries.html#next-steps",
+    "href": "posts/March_Daily_Entries.html#next-steps",
+    "title": "March 2026 Daily Entries",
+    "section": "",
+    "text": "Task 1\nTask 2\nTask 3"
+  },
+  {
     "objectID": "posts/2026-02-18-goals.html",
     "href": "posts/2026-02-18-goals.html",
     "title": "Spring Semester Goals",
@@ -81,7 +95,7 @@
     "href": "index.html#about-me",
     "title": "Shama Hasan",
     "section": "About Me",
-    "text": "About Me\nYour info!\nI am an undergraduate at William & Mary (Class of 2027) majoring in CAMS (Computational & Applied Mathematics & Statistics) on the Mathematical Biology track and minoring in data science. My research interests involve applying computational techniques to biological questions in molecular biology and virology!\nHere you’ll find information about my research, outreach and education activities, and my comprehensive lab notebook documenting ongoing projects and findings."
+    "text": "About Me\nI am an undergraduate at William & Mary (Class of 2027) majoring in CAMS (Computational & Applied Mathematics & Statistics) on the Mathematical Biology track and minoring in data science. My research interests involve applying computational techniques to biological questions in molecular biology and virology!\nHere you’ll find information about my research, outreach and education activities, and my comprehensive lab notebook documenting ongoing projects and findings."
   },
   {
     "objectID": "index.html#contact",

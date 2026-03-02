@@ -48,11 +48,11 @@ for taxon, accession in zip(api["Taxon"], api["Accession_Number"]):
     os.system(cmd)
 ```
 
-# Discussion
+## Discussion
 
 Discuss findings, issues encountered, and next steps.
 
-# Next Steps
+## Next Steps
 
 - [ ] Task 1
 - [ ] Task 2
