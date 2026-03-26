@@ -1,0 +1,90 @@
+---
+title: "HPC Upload"
+author: "Shama Hasan"
+date: "2026-03-25"
+categories: [guidelines, HPC, CLI]
+description: "How to upload files to and run script in HPC!!"
+draft: true
+---
+
+# Step-by-Step 
+
+### Step 1: Log into HPC
+
+i. Input user 
+```python 
+ssh shasan01@bora.sciclone.wm.edu
+```
+ii. Input password 
+
+### Step 2: Navigate to necessary directory and folder
+
+```python
+cd scr10
+```
+- changes current working directory to a specific, high-performance "scratch" directory 
+
+```python
+pwd
+``` 
+- displays current path of directory you are currently in 
+
+```python
+ls 
+```
+- lists all contents (files / subdirectories) of directory 
+
+```python
+cd Api_Evo/
+```
+- moves into desired folder 
+
+### Step 3: Upload new file 
+
+i. go to os terminal 
+```python
+scp file_name.py shasan01@bora.sciclone.wm.edu:/sciclone/scr10/shasan01/Api_Evo/
+```
+- moves file_name into the Api_Evo container 
+
+### Step 4: Create new shell script 
+
+```python
+nano file_name.sh
+```
+- opens text editor 
+
+```python
+#!/bin/bash
+#SBATCH --job-name=description
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH -t 1:00:00
+#SBATCH --mem=12G
+python file_name.py cds_files/ 
+
+^O to save file
+enter 
+^X to exit
+
+### Step 5: Submit job
+
+```python
+sbatch file_name.sh 
+``` 
+
+```python
+squeue --me 
+``` 
+
+``python
+cat slurm
+```
+- checks for errors in job submission / code script 
+
+```python
+rm slurm
+```
+- removes slurm file 
+- make sure to remove for each time cat slurm is submitted 
+

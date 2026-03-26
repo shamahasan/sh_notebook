@@ -42,6 +42,8 @@ Spring 2026 goals
 - [ ] Apicomplexan Genome Evolution 
 - [ ] CLI Tutorial 
     - basic intro tutorial, index of commands, etc.
+- [ ] HPC Tutorial
+    - basic intro tutorial, index of commands, upload files, running scripts, etc. 
 - [ ] Microscope image gallery 
 
 # Primary Skill Building

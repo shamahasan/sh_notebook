@@ -119,7 +119,7 @@ Discuss findings, issues encountered, and next steps.
 
 Group and optionally select the longest isoforms in each CDS file
 
-upload script to:
+- upload script to:
     - read through each FASTA file of CDS
     - make sure each sequence is complete with start and termindation codons 
     - group sequence by gene/locus (isoforms)
