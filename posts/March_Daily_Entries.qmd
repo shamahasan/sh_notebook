@@ -11,7 +11,7 @@ image: ""
 
 ## Overview
 
-Downloading annotated apicomplexan genomes. 
+Download annotated apicomplexan genomes  
 
 ## Goals
 
@@ -47,6 +47,477 @@ for taxon, accession in zip(api["Taxon"], api["Accession_Number"]):
     #print(cmd)
     os.system(cmd)
 ```
+
+## Discussion
+
+Discuss findings, issues encountered, and next steps.
+
+## Next Steps
+
+- [ ] Task 1
+- [ ] Task 2
+- [ ] Task 3
+
+--- 
+
+# March 2
+
+## Overview 
+
+Upload, unzip, and prepare files 
+
+## Goals 
+
+- write script to:
+    - unzip each .zip file that was downloaded from NCBI 
+    - find coding DNA sequence (CDS) inside each file 
+    - copy CDS file to a new file and rename to .fasta 
+- transfer genomic files and script to HPC*
+
+* See entry: "HPC Upload" for more details 
+
+## Code Block 
+
+```python 
+import glob, os, sys
+
+def unzip_copy_cds(folder: str) -> None:
+    zip_files = glob.glob(f'{folder}/*zip')
+    for file in zip_files:
+        os.system(f'unzip{file}')
+        cds_file = glob.glob('ncbi_dataset/data/*/cds_from_genomic.fna')
+        if len(cds_file) > 0:
+            taxon = file.rpartition("/")[-1].partition('.zip')[0]
+            os.system(f'cp {cds_file[0]} {taxon}.fasta')
+        
+if __name__ == '__main__':
+    # imports script as python library and calls as function 
+    try:
+        folder_name = sys.argv[1]
+    except:
+        print('Usage: python ncbi_data_prep.py [FOLDER-NAME]\n')
+        sys.exit(1)
+
+    unzip_copy_cds(folder_name)
+``` 
+
+## Discussion 
+
+Discuss findings, issues encountered, and next steps.
+
+## Next Steps
+
+- [ ] Task 1
+- [ ] Task 2
+- [ ] Task 3 
+
+---
+
+# March 5
+
+### Overview
+
+Group and optionally select the longest isoforms in each CDS file
+
+upload script to:
+    - read through each FASTA file of CDS
+    - make sure each sequence is complete with start and termindation codons 
+    - group sequence by gene/locus (isoforms)
+    - keep the most useful isoforms; either:
+        - all 
+        - longest per locus 
+
+### Code Block
+
+```python 
+import glob, sys
+
+from Bio import SeqIO
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+
+from collections import defaultdict
+from pathlib import Path
+
+
+def assess_seq_info(seq_description: str) -> list:
+    """
+    Returns locus information for a given sequence, based on its "description"
+
+    Parameters
+    ----------
+    seq_description:  full descriptive name, presumably from GenBank
+
+    Returns
+    ----------
+    loc_info:   locus for the given protein-coding gene
+    prot_info:  unique accession code for the given protein-coding gene
+    """
+
+    if 'protein_id=' not in seq_description:
+        return None, None
+
+    elif 'locus_tag=' in seq_description:
+        loc_info = seq_description.partition('locus_tag=')[2].partition(']')[0]
+        prot_info = seq_description.partition('protein_id=')[2].partition(']')[0]
+        return loc_info, prot_info
+
+    elif 'gene=' in seq_description:
+        loc_info = seq_description.partition('gene=')[2].partition(']')[0]
+        prot_info = seq_description.partition('protein_id=')[2].partition(']')[0]
+        return loc_info, prot_info
+
+    else:
+        prot_info = seq_description.partition('protein_id=')[2].partition(']')[0]
+        return None, prot_info
+
+
+def check_complete_seq(
+        seq: str,
+        prok: bool = False) -> bool:
+    """
+    Checks that the given sequence is complete with start and termination codons
+
+    Parameters
+    ----------
+    seq:   CDS sequence to evaluate
+    prok:  whether or not to check if the sequence starts with major prokaryotic alternative codons
+
+    Returns
+    ----------
+    True if sequence is a complete ORF, with start and stop codons, otherwise False
+    """
+
+    if len(seq)%3 == 0 and seq[-3:].upper() in ['TGA','TAA','TAG']:
+        if not prok and seq[:3].upper() == 'ATG':
+            return True
+
+        # Prokaryotes can use a couple other initiation codons (TTG/GTG are most common)
+        elif prok and seq[:3].upper() in ['ATG', 'TTG','GTG']:
+            return True
+
+        else:
+            return False
+
+    else:
+        return False
+
+
+def capture_isoforms(
+        fasta_file: str,
+        longest_isoform: bool = False,
+        prok: bool = False,
+        verbose: bool = False) -> dict:
+    """
+    Captures isoforms for each locus from a GenBank-sourced FASTA file of CDSs
+
+    Parameters
+    ----------
+    fasta_file:   FASTA file of GenBank/RefSeq CDS sequence to evaluate
+    prok:         whether or not to check if the sequence starts with major prokaryotic alternative codons
+
+    Returns
+    ----------
+    iso_dict:    dictionary of isoforms for each unique locus
+    """
+
+    iso_dict = defaultdict(list)
+
+    s = 0
+    cs = 0
+
+    for i in open(fasta_file).read().split('>lcl|')[1:]:
+        s += 1
+        qseq = i.rpartition(']')[2].replace('\n','')
+
+        if check_complete_seq(qseq, prok):
+            cs += 1
+            loc_info, prot_info = assess_seq_info(i.partition('\n')[0])
+
+            if loc_info:
+                iso_dict[loc_info].append((prot_info, qseq))
+
+            elif prot_info:
+                iso_dict[prot_info].append((prot_info, qseq))
+
+    # if verbose and longest_isoform:
+    #     print(f'[{timedelta(seconds = round(time.time()-start_time))}]  Found {s} CDSs, {cs} are complete, from {len(iso_dict)} unique loci')
+
+    return iso_dict
+
+
+def rename_query_seqs(
+        seq_list: list,
+        taxon_name: str,
+        taxon_code: str,
+        org_txnmy: str,
+        wgs: bool = False,
+        delim: str = 'XX') -> tuple[list, dict]:
+    """
+    Simplifies the names of a list of sequences based on their NCBI taxonomy (if given)
+    and any unique identifiers (i.e., taxon-codes).
+
+    Parameters
+    ----------
+    seq_list:    list of sequences to rename
+    taxon_name:  name of a given taxon
+    taxon_code:  abbreviated taxonomic code (user provided)
+    org_txnmy:   organism's NCBI taxonomy (if available)
+    wgs:         the data are from an annotated whole genome sequence (wgs)
+    delim:       delimiter to use for separating fields (default = 'XX')
+
+    Returns
+    ----------
+    updated_seqs:     list of sequences with updated names
+    name_conversion:  dictionary of original names to newly given names
+    """
+
+    name_conversion = {}
+    updated_seqs = []
+
+    if delim != '|' and delim[0] != '_' and delim[-1] != '_':
+        delim = f'_{delim}_'
+
+    if not wgs:
+        txpt_num = 1
+        for i in seq_list:
+            new_txpt_name = f'Transcript_{txpt_num}_Len_{len(i)}'
+
+            if '_cov_' in i.id.lower():
+                kcov = f'{float(i.id.lower().split("_cov_")[1].split("_")[0]):.2f}'
+                new_txpt_name += f'_Kcov_{kcov}'
+
+            if org_txnmy:
+                new_txpt_name = f'{org_txnmy}{delim}{new_txpt_name}'
+
+            if taxon_name:
+                new_txpt_name = f'{taxon_name}{delim}{new_txpt_name}'
+
+            if taxon_code:
+                new_txpt_name = f'{taxon_code}{delim}{new_txpt_name}'
+
+            name_conversion[i.id] = new_txpt_name
+
+            i.id = new_txpt_name
+            i.description = ''
+            i.name = ''
+
+            updated_seqs.append(i)
+
+            txpt_num += 1
+
+    else:
+        for i in seq_list:
+            if org_txnmy:
+                new_orf_name = f'{org_txnmy}{delim}{i.id}'
+
+            if taxon_name:
+                new_orf_name = f'{taxon_name}{delim}{i.id}'
+
+            if taxon_code:
+                new_orf_name = f'{taxon_code}{delim}{i.id}'
+
+            name_conversion[i.id] = new_orf_name
+
+            i.id = new_orf_name
+            i.description = ''
+            i.name = ''
+
+            updated_seqs.append(i)
+
+    return updated_seqs, name_conversion
+
+
+
+def save_isoforms(
+        fasta_file: str,
+        taxon_name: str,
+        delim: str = 'XX',
+        ref_seq: bool = True,
+        longest_isoform: bool = True,
+        prok: bool = False,
+        verbose: bool = False) -> list:
+    """
+    Keep the most useful isoforms based on user preference (either all of them, or the
+    longest isoform for a given locus)
+
+    Parameters
+    ----------
+    fasta_file:       FASTA file of GenBank/RefSeq CDS sequence to evaluate
+    taxon_name:       name of a given taxon
+    delim:            delimiter to use for separating fields (default = 'XX')
+    longest_isoform:  whether to keep just the longest isoform (True), otherwise all isoforms (False)
+
+    Returns
+    ----------
+    path to FASTA file of prepared and renamed nucleotide ORFs
+    """
+
+    all_isoforms = []
+
+    Path('Longest_Isoforms').mkdir(exist_ok = True)
+
+    if ref_seq:
+        iso_dict = capture_isoforms(
+                    fasta_file,
+                    longest_isoform,
+                    prok,
+                    verbose)
+    else:
+        if 'Andalucia' in fasta_file or 'Malawimonas' in fasta_file:
+            iso_dict = {i.id: i for i in SeqIO.parse(fasta_file, 'fasta')}
+        else:
+            iso_dict = {i.id: i for i in SeqIO.parse(fasta_file, 'fasta') if check_complete_seq(i.seq, prok)}
+
+    for k, v in iso_dict.items():
+        if ref_seq:
+            if longest_isoform:
+                prot_id, seq_str = max(v, key=lambda x: len(x[1]))
+                all_isoforms.append(SeqRecord(Seq(seq_str), prot_id, '', ''))
+
+            else:
+                for i in v:
+                    all_isoforms.append(SeqRecord(Seq(i[1]), i[0], '', ''))
+
+        else:
+            all_isoforms.append(v)
+
+
+    orfs_renamed, name_conversion = rename_query_seqs(
+                                        all_isoforms,
+                                        taxon_name,
+                                        None,
+                                        None,
+                                        wgs = True,
+                                        delim = delim
+                                        )
+
+    # make FASTA file for the updated isoforms
+    fasta_iso = f'Longest_Isoforms/{taxon_name}.LargeIsoforms.fasta'
+
+    SeqIO.write(orfs_renamed, fasta_iso, 'fasta')
+
+
+if __name__ == '__main__':
+    try:
+        fasta_file = sys.argv[1]
+    except:
+        print('\nUsage:\n\n    python3 longest_isoform.py [FASTA-FILE/FOLDER-OF-FASTA-FILES]\n\n')
+        sys.exit()
+
+    if fasta_file.rpartition(".")[-1][:2].lower() in ['fa','.fn.']:
+        single_file = True
+    else:
+        single_file = False
+
+    if single_file:
+        taxon_name = fasta_file.rpartition("/")[-1].partition(".")[0]
+
+        save_isoforms(
+                fasta_file,
+                taxon_name
+                )
+    else:
+        tmp_fasta_files = glob.glob(f'{fasta_file}/*.fa*')
+        if not tmp_fasta_files:
+            tmp_fasta_files = glob.glob(f'{fasta_file}/*.fna*')
+        if not tmp_fasta_files:
+            print('Unable to find FASTA formatted files...')
+            sys.exit(1)
+        if tmp_fasta_files:
+            for f in tmp_fasta_files:
+                taxon_name = f.rpartition("/")[-1].partition(".")[0]
+                save_isoforms(
+                        f,
+                        taxon_name
+                        )
+``` 
+
+## Discussion
+
+Discuss findings, issues encountered, and next steps.
+
+## Next Steps
+
+- [ ] Task 1
+- [ ] Task 2
+- [ ] Task 3
+
+---
+
+# March 6
+
+## Overview 
+
+Translate codon sequences and filter out "bad" or incomplete sequences 
+
+## Goals 
+
+- write script to ensure the following for each sequence:
+    - starts with start codon and ends with stop codon
+    - length is divisible by 3 (complete sets of codons)
+    - protein translation 
+- upload to and run script in HPC 
+
+## Code Block 
+
+```python
+import glob, sys
+from pathlib import Path
+from Bio import SeqIO
+
+
+def check_complete_seq(seq):
+    prot = None
+
+    stop_codons = ["TGA", "TAA", "TAG"]
+
+    if len(seq) % 3 == 0 and seq[:3] == "ATG" and seq[-3:] in stop_codons:
+        temp_prot = seq[:-3].translate()
+        if "*" not in temp_prot:
+            prot = temp_prot
+    
+    return prot 
+
+
+def translate_cds(fasta_file:str, output_fasta:str) -> None:
+    translated_seqs = []
+
+    for seq_rec in SeqIO.parse(fasta_file, 'fasta'):
+        prot = check_complete_seq(seq_rec.seq.upper())
+
+        if prot:
+            seq_rec.seq = prot
+            translated_seqs.append(seq_rec) 
+
+    SeqIO.write(translated_seqs, output_fasta, 'fasta')
+
+
+def translate_all_fastas(fasta_folder:str) -> str:
+    fasta_files = glob.glob(f'{fasta_folder}/*.fasta')
+
+    out_folder = f'{fasta_folder.rstrip("/")}_Translated/'
+
+    Path(out_folder).mkdir(exist_ok=True)
+
+    for fasta in fasta_files:
+        output_fasta = f'{out_folder}{fasta.rpartition("/")[-1].rpartition(".")[0]}.Translated.fasta' 
+
+        translate_cds(fasta, output_fasta) 
+
+    return out_folder 
+
+
+if __name__ == '__main__':
+    try:
+        fasta_folder = sys.argv[1]
+
+    except:
+        print('\nUsage:\n\n     python3 check_seqs.py [FASTA-FOLDER]\n\n')
+        sys.exit(1)  
+
+    translate_all_fastas(fasta_folder)
+``` 
 
 ## Discussion
 
