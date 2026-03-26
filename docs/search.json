@@ -168,6 +168,13 @@
     "text": "Start writing introduction section of apicomplexa paper\nOutline and plan for honors thesis\nFrequent lab notebook entries detailing my independent and lab research\n\n\n\n\n\nContinue with BAT analysis and gene alignments\nGroup / collaborative genome lab project\nDevelop microscope and lab procedure expertise\nMaintain and document ciliate cultures\n\n\n\n\n\nSubmit Charles Center Summer Grant proposal\n\n\n\n\n\nSet up digital notebook\nDetermine timeline for summer and senior year honors research\nLots of reading for summer/honors project (APICOMPLEXA!!)\n\n\n\n\n\nUpdating my Notebook\nApicomplexan Genome Evolution\nCLI Tutorial\n\nbasic intro tutorial, index of commands, etc.\n\nHPC Tutorial\n\nbasic intro tutorial, index of commands, upload files, running scripts, etc.\n\nMicroscope image gallery"
   },
   {
+    "objectID": "posts/HPC_Upload.html",
+    "href": "posts/HPC_Upload.html",
+    "title": "HPC Upload",
+    "section": "",
+    "text": "Step-by-Step\n\nStep 1: Log into HPC\n\nInput user\n\nssh shasan01@bora.sciclone.wm.edu\n\nInput password\n\n\n\nStep 2: Navigate to necessary directory and folder\ncd scr10\n\nchanges current working directory to a specific, high-performance “scratch” directory\n\npwd\n\ndisplays current path of directory you are currently in\n\nls \n\nlists all contents (files / subdirectories) of directory\n\ncd Api_Evo/\n\nmoves into desired folder\n\n\n\nStep 3: Upload new file\n\ngo to os terminal\n\nscp file_name.py shasan01@bora.sciclone.wm.edu:/sciclone/scr10/shasan01/Api_Evo/\n\nmoves file_name into the Api_Evo container\n\n\n\nStep 4: Create new shell script\nnano file_name.sh\n\nopens text editor\n\n#!/bin/bash\n#SBATCH --job-name=description\n#SBATCH --nodes=1\n#SBATCH --ntasks=1\n#SBATCH -t 1:00:00\n#SBATCH --mem=12G\npython file_name.py cds_files/ \n\n^O to save file\nenter \n^X to exit\n\n### Step 5: Submit job\n\n```python\nsbatch file_name.sh \nsqueue --me \n``python cat slurm\n- checks for errors in job submission / code script \n\n```python\nrm slurm\n\nremoves slurm file\nmake sure to remove for each time cat slurm is submitted"
+  },
+  {
     "objectID": "posts/updating_my_notebook.html",
     "href": "posts/updating_my_notebook.html",
     "title": "Updating My Notebook",

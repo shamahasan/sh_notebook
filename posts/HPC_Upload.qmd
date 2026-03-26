@@ -4,7 +4,7 @@ author: "Shama Hasan"
 date: "2026-03-25"
 categories: [guidelines, HPC, CLI]
 description: "How to upload files to and run script in HPC!!"
-draft: true
+image: ""
 ---
 
 # Step-by-Step 
