@@ -74,7 +74,7 @@ Upload, unzip, and prepare files
     - copy CDS file to a new file and rename to .fasta 
 - transfer genomic files and script to HPC*
 
-* See entry: "HPC Upload" for more details 
+*See entry: "HPC Upload" for more details 
 
 ## Code Block 
 

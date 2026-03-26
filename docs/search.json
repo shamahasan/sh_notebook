@@ -81,7 +81,7 @@
     "href": "posts/March_Daily_Entries.html#goals-1",
     "title": "March 2026 Daily Entries",
     "section": "Goals",
-    "text": "Goals\n\nwrite script to:\n\nunzip each .zip file that was downloaded from NCBI\nfind coding DNA sequence (CDS) inside each file\ncopy CDS file to a new file and rename to .fasta\n\ntransfer genomic files and script to HPC*\nSee entry: “HPC Upload” for more details"
+    "text": "Goals\n\nwrite script to:\n\nunzip each .zip file that was downloaded from NCBI\nfind coding DNA sequence (CDS) inside each file\ncopy CDS file to a new file and rename to .fasta\n\ntransfer genomic files and script to HPC*\n\n*See entry: “HPC Upload” for more details"
   },
   {
     "objectID": "posts/March_Daily_Entries.html#code-block-1",
