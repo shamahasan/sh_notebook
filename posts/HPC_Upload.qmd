@@ -78,7 +78,7 @@ sbatch file_name.sh
 squeue --me 
 ``` 
 
-``python
+```python
 cat slurm
 ```
 - checks for errors in job submission / code script 
