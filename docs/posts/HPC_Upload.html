@@ -173,6 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#step-2-navigate-to-necessary-directory-and-folder" id="toc-step-2-navigate-to-necessary-directory-and-folder" class="nav-link" data-scroll-target="#step-2-navigate-to-necessary-directory-and-folder">Step 2: Navigate to necessary directory and folder</a></li>
   <li><a href="#step-3-upload-new-file" id="toc-step-3-upload-new-file" class="nav-link" data-scroll-target="#step-3-upload-new-file">Step 3: Upload new file</a></li>
   <li><a href="#step-4-create-new-shell-script" id="toc-step-4-create-new-shell-script" class="nav-link" data-scroll-target="#step-4-create-new-shell-script">Step 4: Create new shell script</a></li>
+  <li><a href="#step-5-submit-job" id="toc-step-5-submit-job" class="nav-link" data-scroll-target="#step-5-submit-job">Step 5: Submit job</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -274,17 +275,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --ntasks=1</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 1:00:00</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=12G</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>python file_name.py cds_files<span class="op">/</span> </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="op">^</span>O to save <span class="bu">file</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>enter </span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="op">^</span>X to exit</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">### Step 5: Submit job</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>```python</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>sbatch file_name.sh </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>squeue <span class="op">--</span>me </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>python file_name.py cds_files<span class="op">/</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>^O to save file enter ^X to exit</p>
+</section>
+<section id="step-5-submit-job" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-submit-job">Step 5: Submit job</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sbatch file_name.sh </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>squeue <span class="op">--</span>me </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>``python cat slurm</p>
 <pre><code>- checks for errors in job submission / code script 
 

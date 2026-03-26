@@ -62,6 +62,7 @@ nano file_name.sh
 #SBATCH -t 1:00:00
 #SBATCH --mem=12G
 python file_name.py cds_files/ 
+```
 
 ^O to save file
 enter 
