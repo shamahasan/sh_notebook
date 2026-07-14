@@ -20,10 +20,6 @@ Download annotated apicomplexan genomes
 - download genomes 
 - write code to efficiently download all genomes at once 
 
-## Procedures
-
-Describe the procedures followed.
-
 ## Data
 
 Present your data here: BAT 
@@ -47,16 +43,6 @@ for taxon, accession in zip(api["Taxon"], api["Accession_Number"]):
     #print(cmd)
     os.system(cmd)
 ```
-
-## Discussion
-
-Discuss findings, issues encountered, and next steps.
-
-## Next Steps
-
-- [ ] Task 1
-- [ ] Task 2
-- [ ] Task 3
 
 --- 
 
@@ -100,16 +86,6 @@ if __name__ == '__main__':
 
     unzip_copy_cds(folder_name)
 ``` 
-
-## Discussion 
-
-Discuss findings, issues encountered, and next steps.
-
-## Next Steps
-
-- [ ] Task 1
-- [ ] Task 2
-- [ ] Task 3 
 
 ---
 
@@ -435,16 +411,6 @@ if __name__ == '__main__':
                         )
 ``` 
 
-## Discussion
-
-Discuss findings, issues encountered, and next steps.
-
-## Next Steps
-
-- [ ] Task 1
-- [ ] Task 2
-- [ ] Task 3
-
 ---
 
 # March 6
@@ -520,13 +486,3 @@ if __name__ == '__main__':
 
     translate_all_fastas(fasta_folder)
 ``` 
-
-## Discussion
-
-Discuss findings, issues encountered, and next steps.
-
-## Next Steps
-
-- [ ] Task 1
-- [ ] Task 2
-- [ ] Task 3

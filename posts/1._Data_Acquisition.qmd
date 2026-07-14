@@ -1,0 +1,67 @@
+---
+title: "Data Acquisition"
+author: "Shama Hasan"
+date: "2026-07-14"
+categories: [api evo, data collection, HPC]
+description: "Gathering species and genomic data for api evo research project" 
+---
+
+# Goals
+
+- Create BAT of apicomplexan species with complete genomes 
+- Gather genomic / biological information from public databases 
+- Download genomes 
+- Write code to efficiently download all genomes to HPC at once 
+
+# Methods 
+
+### Gather genomic data in BAT from NCBI GenBank 
+- Filter by referenced and annotated genomes to narrow taxa 
+
+### Compile metadata 
+- Include info about hosts, vectors, genome size, etc. to infer relationships later 
+
+### Downoad genome assemblies 
+- Taxon and accession number columns 
+- CDS fies in FASTA format
+
+```python
+import os
+import pandas as pd 
+
+os.chdir("/Users/shamahasan/Desktop/Apicomplexa")
+print("Files will download to:", os.getcwd())
+
+api = pd.read_csv("apicomplexa.tsv", sep="\t")
+api = api[["Taxon", "Accession_Number"]]
+for taxon, accession in zip(api["Taxon"], api["Accession_Number"]):
+    taxon = taxon.replace(" ", "_")
+
+    cmd = f"datasets download genome accession {accession} --include cds --filename {taxon}.WGS.CDS.zip"
+
+    #print(cmd)
+    os.system(cmd)
+```
+
+### Upload to HPC 
+*See entry: "HPC Upload" for more details 
+
+# Data
+
+Present your data here. You can include:
+
+- Tables
+- Figures
+- Code outputs
+
+# Observations
+- 61 total taxa with complete, annotated genomes 
+
+# Next Steps
+
+- [ ] Filter genome assemblies 
+- [ ] Translate into proteins 
+
+# References
+
+HPC Upload
