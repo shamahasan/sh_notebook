@@ -13,11 +13,38 @@ image: ""
 Apicomplexa are a large phylum made up entirely of parasitic protists. Their diverse genomic characteristics and adaptability allow them to infect a wide range of hosts and cause serious diseases in humans and animals, including malaria and toxoplasmosis. An ongoing challenge in public health is understanding how parasites adapt to infect new host species, a process that drives the emergence of new diseases as vector distributions spread. Despite their prevalence, apicomplexa as a whole are understudied in the scientific community, resulting in knowledge gaps in the evolutionary history and invasion strategies of many free-living species. This project will examine the evolution of host range, or the number of host species infected by a pathogen, in apicomplexan parasites. Comparative genomic analysis will be used to determine association between host shifts and patterns of genomic change across evolutionary lineages. Ultimately, this research aims to improve understanding of how parasitic traits emerge and may help inform efforts to anticipate future disease emergence. 
 
 
-# Goals
+# 1. Data Acquisition
 
-- Goal 1
-- Goal 2
-- Goal 3
+### Gather genomic data in BAT from NCBI GenBank 
+- Filter by referenced and annotated genomes to narrow taxa 
+
+### Compile metadata 
+- Include info about hosts, vectors, genome size, etc. to infer relationships later 
+
+### Downoad genome assemblies 
+- Taxon and accession number columns 
+- CDS fies in FASTA format
+
+```python
+import os
+import pandas as pd 
+
+os.chdir("/Users/shamahasan/Desktop/Apicomplexa")
+print("Files will download to:", os.getcwd())
+
+api = pd.read_csv("apicomplexa.tsv", sep="\t")
+api = api[["Taxon", "Accession_Number"]]
+for taxon, accession in zip(api["Taxon"], api["Accession_Number"]):
+    taxon = taxon.replace(" ", "_")
+
+    cmd = f"datasets download genome accession {accession} --include cds --filename {taxon}.WGS.CDS.zip"
+
+    #print(cmd)
+    os.system(cmd)
+```
+
+### Upload to HPC 
+*See entry: "HPC Upload" for more details  
 
 # Methods
 
