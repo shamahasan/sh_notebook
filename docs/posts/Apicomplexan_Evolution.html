@@ -175,13 +175,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#downoad-genome-assemblies" id="toc-downoad-genome-assemblies" class="nav-link" data-scroll-target="#downoad-genome-assemblies">Downoad genome assemblies</a></li>
   <li><a href="#upload-to-hpc" id="toc-upload-to-hpc" class="nav-link" data-scroll-target="#upload-to-hpc">Upload to HPC</a></li>
   </ul></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">2. Data Prep</a>
   <ul class="collapse">
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#procedures" id="toc-procedures" class="nav-link" data-scroll-target="#procedures">Procedures</a></li>
+  <li><a href="#select-longest-isoforms" id="toc-select-longest-isoforms" class="nav-link" data-scroll-target="#select-longest-isoforms">Select longest isoforms</a></li>
+  <li><a href="#transate-orfs" id="toc-transate-orfs" class="nav-link" data-scroll-target="#transate-orfs">Transate ORFs</a></li>
   </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <li><a href="#find-orthogroups" id="toc-find-orthogroups" class="nav-link" data-scroll-target="#find-orthogroups">3. Find Orthogroups</a>
   <ul class="collapse">
+  <li><a href="#run-orthofinder" id="toc-run-orthofinder" class="nav-link" data-scroll-target="#run-orthofinder">Run OrthoFinder</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
   <ul class="collapse">
   <li><a href="#example-code-block" id="toc-example-code-block" class="nav-link" data-scroll-target="#example-code-block">Example Code Block</a></li>
@@ -288,19 +289,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>*See entry: “HPC Upload” for more details</p>
 </section>
 </section>
-<section id="methods" class="level1">
-<h1>Methods</h1>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>Describe your setup or preparation.</p>
+<section id="data-prep" class="level1">
+<h1>2. Data Prep</h1>
+<section id="select-longest-isoforms" class="level3">
+<h3 class="anchored" data-anchor-id="select-longest-isoforms">Select longest isoforms</h3>
+<ul>
+<li>Act as a single representative sequence for each gene per taxon</li>
+</ul>
 </section>
-<section id="procedures" class="level2">
-<h2 class="anchored" data-anchor-id="procedures">Procedures</h2>
-<p>Describe the procedures followed.</p>
+<section id="transate-orfs" class="level3">
+<h3 class="anchored" data-anchor-id="transate-orfs">Transate ORFs</h3>
+<ul>
+<li>Translate open reading frames into proteins</li>
+<li>Make sure each sequence begins and ends with a start and stop codon, respectively</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> glob, sys</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> Bio <span class="im">import</span> SeqIO</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_complete_seq(seq):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    prot <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    stop_codons <span class="op">=</span> [<span class="st">"TGA"</span>, <span class="st">"TAA"</span>, <span class="st">"TAG"</span>]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(seq) <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> seq[:<span class="dv">3</span>] <span class="op">==</span> <span class="st">"ATG"</span> <span class="kw">and</span> seq[<span class="op">-</span><span class="dv">3</span>:] <span class="kw">in</span> stop_codons:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        temp_prot <span class="op">=</span> seq[:<span class="op">-</span><span class="dv">3</span>].translate()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="st">"*"</span> <span class="kw">not</span> <span class="kw">in</span> temp_prot:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            prot <span class="op">=</span> temp_prot</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> prot </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_cds(fasta_file:<span class="bu">str</span>, output_fasta:<span class="bu">str</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    translated_seqs <span class="op">=</span> []</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> seq_rec <span class="kw">in</span> SeqIO.parse(fasta_file, <span class="st">'fasta'</span>):</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        prot <span class="op">=</span> check_complete_seq(seq_rec.seq.upper())</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> prot:</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            seq_rec.seq <span class="op">=</span> prot</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            translated_seqs.append(seq_rec) </span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    SeqIO.write(translated_seqs, output_fasta, <span class="st">'fasta'</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> translate_all_fastas(fasta_folder:<span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    fasta_files <span class="op">=</span> glob.glob(<span class="ss">f'</span><span class="sc">{</span>fasta_folder<span class="sc">}</span><span class="ss">/*.fasta'</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    out_folder <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>fasta_folder<span class="sc">.</span>rstrip(<span class="st">"/"</span>)<span class="sc">}</span><span class="ss">_Translated/'</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    Path(out_folder).mkdir(exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> fasta <span class="kw">in</span> fasta_files:</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        output_fasta <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>out_folder<span class="sc">}{</span>fasta<span class="sc">.</span>rpartition(<span class="st">"/"</span>)[<span class="op">-</span><span class="dv">1</span>]<span class="sc">.</span>rpartition(<span class="st">"."</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">.Translated.fasta'</span> </span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        translate_cds(fasta, output_fasta) </span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out_folder </span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        fasta_folder <span class="op">=</span> sys.argv[<span class="dv">1</span>]</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Usage:</span><span class="ch">\n\n</span><span class="st">     python3 check_seqs.py [FASTA-FOLDER]</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        sys.exit(<span class="dv">1</span>)  </span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    translate_all_fastas(fasta_folder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="results" class="level1">
-<h1>Results</h1>
+<section id="find-orthogroups" class="level1">
+<h1>3. Find Orthogroups</h1>
+<section id="run-orthofinder" class="level3">
+<h3 class="anchored" data-anchor-id="run-orthofinder">Run OrthoFinder</h3>
+<ul>
+<li>Comparative genomic analysis to find orthologs and orthogroups</li>
+<li>Single copy ortholog (SCO) count determines number of genes shared across taxa</li>
+<li>SCO count requires orthologs to be present in 100% of the taxa</li>
+</ul>
+</section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <p>Present your data here. You can include:</p>
