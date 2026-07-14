@@ -2,23 +2,23 @@
 title: "Apicomplexan Evolution"
 author: "Shama Hasan"
 date: "2026-07-14"
-categories: [api-evo, independent-research, honors-thesis, charles-center-grant]
-description: "Procedure and notes for my indepedent research project during my time doing summer research through the W&M Charles \
-Center Grant and continuing into senior year for my honors thesis!" 
+categories: [api evo, independent research, honors thesis, charles center grant]
+description: "Procedure and notes for my indepedent research project over the summer through the W&M Charles \
+Center Grant and during senior year for my honors thesis!" 
 image: ""
 ---
 
 # Project Overview
 
-Apicomplexa are a large phylum made up entirely of parasitic protists. Their diverse genomic characteristics and adaptability\
- allow them to infect a wide range of hosts and cause serious diseases in humans and animals, including malaria and toxoplasmosis.\
-  An ongoing challenge in public health is understanding how parasites adapt to infect new host species, a process that drives the emergence\
-   of new diseases as vector distributions spread. Despite their prevalence, apicomplexa as a whole are understudied in the scientific\
-    community, resulting in knowledge gaps in the evolutionary history and invasion strategies of many free-living species.\
-     This project will examine the evolution of host range, or the number of host species infected by a pathogen, in apicomplexan parasites.\
-      Comparative genomic analysis will be used to determine association between host shifts and patterns of genomic change across\
-       evolutionary lineages. Ultimately, this research aims to improve understanding of how parasitic traits emerge and may help inform\
-        efforts to anticipate future disease emergence. 
+Apicomplexa are a large phylum made up entirely of parasitic protists. Their diverse genomic characteristics and adaptability \
+allow them to infect a wide range of hosts and cause serious diseases in humans and animals, including malaria and toxoplasmosis. \
+An ongoing challenge in public health is understanding how parasites adapt to infect new host species, a process that drives the emergence \
+of new diseases as vector distributions spread. Despite their prevalence, apicomplexa as a whole are understudied in the scientific \
+community, resulting in knowledge gaps in the evolutionary history and invasion strategies of many free-living species. \
+This project will examine the evolution of host range, or the number of host species infected by a pathogen, in apicomplexan parasites. \
+Comparative genomic analysis will be used to determine association between host shifts and patterns of genomic change across \
+evolutionary lineages. Ultimately, this research aims to improve understanding of how parasitic traits emerge and may help inform \
+efforts to anticipate future disease emergence. 
 
 
 # Goals
