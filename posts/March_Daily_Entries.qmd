@@ -115,9 +115,11 @@ Discuss findings, issues encountered, and next steps.
 
 # March 5
 
-### Overview
+## Overview
 
 Group and optionally select the longest isoforms in each CDS file
+
+## Goals
 
 - upload script to:
     - read through each FASTA file of CDS
@@ -127,7 +129,7 @@ Group and optionally select the longest isoforms in each CDS file
         - all 
         - longest per locus 
 
-### Code Block
+## Code Block
 
 ```python 
 import glob, sys

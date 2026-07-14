@@ -14,6 +14,76 @@
     "text": "How to Explore This Notebook\n\nSearch: Use the search box to find entries by keywords\nFilter by Category: Click on categories to filter entries by project or topic\nSort: Sort entries by date, title, or other criteria\nBrowse: Scroll through all entries in chronological order"
   },
   {
+    "objectID": "posts/Apicomplexan_Evolution.html",
+    "href": "posts/Apicomplexan_Evolution.html",
+    "title": "Apicomplexan Evolution",
+    "section": "",
+    "text": "Apicomplexa are a large phylum made up entirely of parasitic protists. Their diverse genomic characteristics and adaptability\nallow them to infect a wide range of hosts and cause serious diseases in humans and animals, including malaria and toxoplasmosis.\nAn ongoing challenge in public health is understanding how parasites adapt to infect new host species, a process that drives the emergence\nof new diseases as vector distributions spread. Despite their prevalence, apicomplexa as a whole are understudied in the scientific\ncommunity, resulting in knowledge gaps in the evolutionary history and invasion strategies of many free-living species.\nThis project will examine the evolution of host range, or the number of host species infected by a pathogen, in apicomplexan parasites.\nComparative genomic analysis will be used to determine association between host shifts and patterns of genomic change across\nevolutionary lineages. Ultimately, this research aims to improve understanding of how parasitic traits emerge and may help inform\nefforts to anticipate future disease emergence."
+  },
+  {
+    "objectID": "posts/Apicomplexan_Evolution.html#setup",
+    "href": "posts/Apicomplexan_Evolution.html#setup",
+    "title": "Apicomplexan Evolution",
+    "section": "Setup",
+    "text": "Setup\nDescribe your setup or preparation."
+  },
+  {
+    "objectID": "posts/Apicomplexan_Evolution.html#procedures",
+    "href": "posts/Apicomplexan_Evolution.html#procedures",
+    "title": "Apicomplexan Evolution",
+    "section": "Procedures",
+    "text": "Procedures\nDescribe the procedures followed."
+  },
+  {
+    "objectID": "posts/Apicomplexan_Evolution.html#data",
+    "href": "posts/Apicomplexan_Evolution.html#data",
+    "title": "Apicomplexan Evolution",
+    "section": "Data",
+    "text": "Data\nPresent your data here. You can include:\n\nTables\nFigures\nCode outputs\n\n\nExample Code Block"
+  },
+  {
+    "objectID": "posts/Apicomplexan_Evolution.html#observations",
+    "href": "posts/Apicomplexan_Evolution.html#observations",
+    "title": "Apicomplexan Evolution",
+    "section": "Observations",
+    "text": "Observations\nRecord your observations."
+  },
+  {
+    "objectID": "posts/Apicomplexan_Evolution.html#notes",
+    "href": "posts/Apicomplexan_Evolution.html#notes",
+    "title": "Apicomplexan Evolution",
+    "section": "Notes",
+    "text": "Notes\n\nAdditional notes\nTroubleshooting\nIdeas for future work"
+  },
+  {
+    "objectID": "posts/updating_my_notebook.html",
+    "href": "posts/updating_my_notebook.html",
+    "title": "Updating My Notebook",
+    "section": "",
+    "text": "Step-by-Step\n\nStep 1: Prepare terminal\n\nTerminal &gt; conda activate quarto\ncd Desktop\ncd XLab_AP\ncd Lab_Notebook_Peronal_Site\n\nShortcut: “cd Desk” tab autofills the rest of the folder name\n\n\nStep 2: Edit Post\n\nOpen Lab_Notebook_Peronal_Site folder in VS Code\nEdit or create .qmd file under “posts” subfolder\nSave file\n\n\n\nStep 3: Upload\n\nTerminal &gt; quarto render\nGitHub &gt; Code &gt; Add file &gt; Upload files\nUpload “posts” and “docs” subfolders\nAdd descriptive note (i.e. “Updating Notebook Post”) &gt; Commit changes\nWait until commit has fully loaded and has a check mark\n\nNote: different method due to inabililty to install git\n\n\nStep 4: Access Website\n\nGitHub &gt; Settings &gt; Pages\nClick link to website"
+  },
+  {
+    "objectID": "posts/HPC_Upload.html",
+    "href": "posts/HPC_Upload.html",
+    "title": "HPC Upload",
+    "section": "",
+    "text": "Step-by-Step\n\nStep 1: Log into HPC\n\nInput user\n\nssh shasan01@bora.sciclone.wm.edu\n\nInput password\n\n\n\nStep 2: Navigate to necessary directory and folder\ncd scr10\n\nchanges current working directory to a specific, high-performance “scratch” directory\n\npwd\n\ndisplays current path of directory you are currently in\n\nls \n\nlists all contents (files / subdirectories) of directory\n\ncd Api_Evo/\n\nmoves into desired folder\n\n\n\nStep 3: Upload new file\n\ngo to os terminal\n\nscp file_name.py shasan01@bora.sciclone.wm.edu:/sciclone/scr10/shasan01/Api_Evo/\n\nmoves file_name into the Api_Evo container\n\n\n\nStep 4: Create new shell script\nnano file_name.sh\n\nopens text editor\n\n#!/bin/bash\n#SBATCH --job-name=description\n#SBATCH --nodes=1\n#SBATCH --ntasks=1\n#SBATCH -t 1:00:00\n#SBATCH --mem=12G\npython file_name.py cds_files/ \n^O to save file enter ^X to exit\n\n\nStep 5: Submit job\nsbatch file_name.sh \nsqueue --me \ncat slurm\n\nchecks for errors in job submission / code script\n\nrm slurm\n\nremoves slurm file\nmake sure to remove for each time cat slurm is submitted"
+  },
+  {
+    "objectID": "posts/2026-02-18-goals.html",
+    "href": "posts/2026-02-18-goals.html",
+    "title": "Spring Semester Goals",
+    "section": "",
+    "text": "Spring 2026 goals\n\n\n\n\n\nStart writing introduction section of apicomplexa paper\nOutline and plan for honors thesis\nFrequent lab notebook entries detailing my independent and lab research\n\n\n\n\n\nContinue with BAT analysis and gene alignments\nGroup / collaborative genome lab project\nDevelop microscope and lab procedure expertise\nMaintain and document ciliate cultures\n\n\n\n\n\nSubmit Charles Center Summer Grant proposal\n\n\n\n\n\nSet up digital notebook\nDetermine timeline for summer and senior year honors research\nLots of reading for summer/honors project (APICOMPLEXA!!)\n\n\n\n\n\nUpdating my Notebook\nApicomplexan Genome Evolution\nCLI Tutorial\n\nbasic intro tutorial, index of commands, etc.\n\nHPC Tutorial\n\nbasic intro tutorial, index of commands, upload files, running scripts, etc.\n\nMicroscope image gallery"
+  },
+  {
+    "objectID": "posts/2026-02-18-goals.html#goals",
+    "href": "posts/2026-02-18-goals.html#goals",
+    "title": "Spring Semester Goals",
+    "section": "",
+    "text": "Start writing introduction section of apicomplexa paper\nOutline and plan for honors thesis\nFrequent lab notebook entries detailing my independent and lab research\n\n\n\n\n\nContinue with BAT analysis and gene alignments\nGroup / collaborative genome lab project\nDevelop microscope and lab procedure expertise\nMaintain and document ciliate cultures\n\n\n\n\n\nSubmit Charles Center Summer Grant proposal\n\n\n\n\n\nSet up digital notebook\nDetermine timeline for summer and senior year honors research\nLots of reading for summer/honors project (APICOMPLEXA!!)\n\n\n\n\n\nUpdating my Notebook\nApicomplexan Genome Evolution\nCLI Tutorial\n\nbasic intro tutorial, index of commands, etc.\n\nHPC Tutorial\n\nbasic intro tutorial, index of commands, upload files, running scripts, etc.\n\nMicroscope image gallery"
+  },
+  {
     "objectID": "posts/March_Daily_Entries.html",
     "href": "posts/March_Daily_Entries.html",
     "title": "March 2026 Daily Entries",
@@ -105,6 +175,27 @@
     "text": "Next Steps\n\nTask 1\nTask 2\nTask 3"
   },
   {
+    "objectID": "posts/March_Daily_Entries.html#overview-2",
+    "href": "posts/March_Daily_Entries.html#overview-2",
+    "title": "March 2026 Daily Entries",
+    "section": "Overview",
+    "text": "Overview\nGroup and optionally select the longest isoforms in each CDS file"
+  },
+  {
+    "objectID": "posts/March_Daily_Entries.html#goals-2",
+    "href": "posts/March_Daily_Entries.html#goals-2",
+    "title": "March 2026 Daily Entries",
+    "section": "Goals",
+    "text": "Goals\n\nupload script to:\n\nread through each FASTA file of CDS\nmake sure each sequence is complete with start and termindation codons\ngroup sequence by gene/locus (isoforms)\nkeep the most useful isoforms; either:\n\nall\nlongest per locus"
+  },
+  {
+    "objectID": "posts/March_Daily_Entries.html#code-block-2",
+    "href": "posts/March_Daily_Entries.html#code-block-2",
+    "title": "March 2026 Daily Entries",
+    "section": "Code Block",
+    "text": "Code Block\nimport glob, sys\n\nfrom Bio import SeqIO\nfrom Bio.Seq import Seq\nfrom Bio.SeqRecord import SeqRecord\n\nfrom collections import defaultdict\nfrom pathlib import Path\n\n\ndef assess_seq_info(seq_description: str) -&gt; list:\n    \"\"\"\n    Returns locus information for a given sequence, based on its \"description\"\n\n    Parameters\n    ----------\n    seq_description:  full descriptive name, presumably from GenBank\n\n    Returns\n    ----------\n    loc_info:   locus for the given protein-coding gene\n    prot_info:  unique accession code for the given protein-coding gene\n    \"\"\"\n\n    if 'protein_id=' not in seq_description:\n        return None, None\n\n    elif 'locus_tag=' in seq_description:\n        loc_info = seq_description.partition('locus_tag=')[2].partition(']')[0]\n        prot_info = seq_description.partition('protein_id=')[2].partition(']')[0]\n        return loc_info, prot_info\n\n    elif 'gene=' in seq_description:\n        loc_info = seq_description.partition('gene=')[2].partition(']')[0]\n        prot_info = seq_description.partition('protein_id=')[2].partition(']')[0]\n        return loc_info, prot_info\n\n    else:\n        prot_info = seq_description.partition('protein_id=')[2].partition(']')[0]\n        return None, prot_info\n\n\ndef check_complete_seq(\n        seq: str,\n        prok: bool = False) -&gt; bool:\n    \"\"\"\n    Checks that the given sequence is complete with start and termination codons\n\n    Parameters\n    ----------\n    seq:   CDS sequence to evaluate\n    prok:  whether or not to check if the sequence starts with major prokaryotic alternative codons\n\n    Returns\n    ----------\n    True if sequence is a complete ORF, with start and stop codons, otherwise False\n    \"\"\"\n\n    if len(seq)%3 == 0 and seq[-3:].upper() in ['TGA','TAA','TAG']:\n        if not prok and seq[:3].upper() == 'ATG':\n            return True\n\n        # Prokaryotes can use a couple other initiation codons (TTG/GTG are most common)\n        elif prok and seq[:3].upper() in ['ATG', 'TTG','GTG']:\n            return True\n\n        else:\n            return False\n\n    else:\n        return False\n\n\ndef capture_isoforms(\n        fasta_file: str,\n        longest_isoform: bool = False,\n        prok: bool = False,\n        verbose: bool = False) -&gt; dict:\n    \"\"\"\n    Captures isoforms for each locus from a GenBank-sourced FASTA file of CDSs\n\n    Parameters\n    ----------\n    fasta_file:   FASTA file of GenBank/RefSeq CDS sequence to evaluate\n    prok:         whether or not to check if the sequence starts with major prokaryotic alternative codons\n\n    Returns\n    ----------\n    iso_dict:    dictionary of isoforms for each unique locus\n    \"\"\"\n\n    iso_dict = defaultdict(list)\n\n    s = 0\n    cs = 0\n\n    for i in open(fasta_file).read().split('&gt;lcl|')[1:]:\n        s += 1\n        qseq = i.rpartition(']')[2].replace('\\n','')\n\n        if check_complete_seq(qseq, prok):\n            cs += 1\n            loc_info, prot_info = assess_seq_info(i.partition('\\n')[0])\n\n            if loc_info:\n                iso_dict[loc_info].append((prot_info, qseq))\n\n            elif prot_info:\n                iso_dict[prot_info].append((prot_info, qseq))\n\n    # if verbose and longest_isoform:\n    #     print(f'[{timedelta(seconds = round(time.time()-start_time))}]  Found {s} CDSs, {cs} are complete, from {len(iso_dict)} unique loci')\n\n    return iso_dict\n\n\ndef rename_query_seqs(\n        seq_list: list,\n        taxon_name: str,\n        taxon_code: str,\n        org_txnmy: str,\n        wgs: bool = False,\n        delim: str = 'XX') -&gt; tuple[list, dict]:\n    \"\"\"\n    Simplifies the names of a list of sequences based on their NCBI taxonomy (if given)\n    and any unique identifiers (i.e., taxon-codes).\n\n    Parameters\n    ----------\n    seq_list:    list of sequences to rename\n    taxon_name:  name of a given taxon\n    taxon_code:  abbreviated taxonomic code (user provided)\n    org_txnmy:   organism's NCBI taxonomy (if available)\n    wgs:         the data are from an annotated whole genome sequence (wgs)\n    delim:       delimiter to use for separating fields (default = 'XX')\n\n    Returns\n    ----------\n    updated_seqs:     list of sequences with updated names\n    name_conversion:  dictionary of original names to newly given names\n    \"\"\"\n\n    name_conversion = {}\n    updated_seqs = []\n\n    if delim != '|' and delim[0] != '_' and delim[-1] != '_':\n        delim = f'_{delim}_'\n\n    if not wgs:\n        txpt_num = 1\n        for i in seq_list:\n            new_txpt_name = f'Transcript_{txpt_num}_Len_{len(i)}'\n\n            if '_cov_' in i.id.lower():\n                kcov = f'{float(i.id.lower().split(\"_cov_\")[1].split(\"_\")[0]):.2f}'\n                new_txpt_name += f'_Kcov_{kcov}'\n\n            if org_txnmy:\n                new_txpt_name = f'{org_txnmy}{delim}{new_txpt_name}'\n\n            if taxon_name:\n                new_txpt_name = f'{taxon_name}{delim}{new_txpt_name}'\n\n            if taxon_code:\n                new_txpt_name = f'{taxon_code}{delim}{new_txpt_name}'\n\n            name_conversion[i.id] = new_txpt_name\n\n            i.id = new_txpt_name\n            i.description = ''\n            i.name = ''\n\n            updated_seqs.append(i)\n\n            txpt_num += 1\n\n    else:\n        for i in seq_list:\n            if org_txnmy:\n                new_orf_name = f'{org_txnmy}{delim}{i.id}'\n\n            if taxon_name:\n                new_orf_name = f'{taxon_name}{delim}{i.id}'\n\n            if taxon_code:\n                new_orf_name = f'{taxon_code}{delim}{i.id}'\n\n            name_conversion[i.id] = new_orf_name\n\n            i.id = new_orf_name\n            i.description = ''\n            i.name = ''\n\n            updated_seqs.append(i)\n\n    return updated_seqs, name_conversion\n\n\n\ndef save_isoforms(\n        fasta_file: str,\n        taxon_name: str,\n        delim: str = 'XX',\n        ref_seq: bool = True,\n        longest_isoform: bool = True,\n        prok: bool = False,\n        verbose: bool = False) -&gt; list:\n    \"\"\"\n    Keep the most useful isoforms based on user preference (either all of them, or the\n    longest isoform for a given locus)\n\n    Parameters\n    ----------\n    fasta_file:       FASTA file of GenBank/RefSeq CDS sequence to evaluate\n    taxon_name:       name of a given taxon\n    delim:            delimiter to use for separating fields (default = 'XX')\n    longest_isoform:  whether to keep just the longest isoform (True), otherwise all isoforms (False)\n\n    Returns\n    ----------\n    path to FASTA file of prepared and renamed nucleotide ORFs\n    \"\"\"\n\n    all_isoforms = []\n\n    Path('Longest_Isoforms').mkdir(exist_ok = True)\n\n    if ref_seq:\n        iso_dict = capture_isoforms(\n                    fasta_file,\n                    longest_isoform,\n                    prok,\n                    verbose)\n    else:\n        if 'Andalucia' in fasta_file or 'Malawimonas' in fasta_file:\n            iso_dict = {i.id: i for i in SeqIO.parse(fasta_file, 'fasta')}\n        else:\n            iso_dict = {i.id: i for i in SeqIO.parse(fasta_file, 'fasta') if check_complete_seq(i.seq, prok)}\n\n    for k, v in iso_dict.items():\n        if ref_seq:\n            if longest_isoform:\n                prot_id, seq_str = max(v, key=lambda x: len(x[1]))\n                all_isoforms.append(SeqRecord(Seq(seq_str), prot_id, '', ''))\n\n            else:\n                for i in v:\n                    all_isoforms.append(SeqRecord(Seq(i[1]), i[0], '', ''))\n\n        else:\n            all_isoforms.append(v)\n\n\n    orfs_renamed, name_conversion = rename_query_seqs(\n                                        all_isoforms,\n                                        taxon_name,\n                                        None,\n                                        None,\n                                        wgs = True,\n                                        delim = delim\n                                        )\n\n    # make FASTA file for the updated isoforms\n    fasta_iso = f'Longest_Isoforms/{taxon_name}.LargeIsoforms.fasta'\n\n    SeqIO.write(orfs_renamed, fasta_iso, 'fasta')\n\n\nif __name__ == '__main__':\n    try:\n        fasta_file = sys.argv[1]\n    except:\n        print('\\nUsage:\\n\\n    python3 longest_isoform.py [FASTA-FILE/FOLDER-OF-FASTA-FILES]\\n\\n')\n        sys.exit()\n\n    if fasta_file.rpartition(\".\")[-1][:2].lower() in ['fa','.fn.']:\n        single_file = True\n    else:\n        single_file = False\n\n    if single_file:\n        taxon_name = fasta_file.rpartition(\"/\")[-1].partition(\".\")[0]\n\n        save_isoforms(\n                fasta_file,\n                taxon_name\n                )\n    else:\n        tmp_fasta_files = glob.glob(f'{fasta_file}/*.fa*')\n        if not tmp_fasta_files:\n            tmp_fasta_files = glob.glob(f'{fasta_file}/*.fna*')\n        if not tmp_fasta_files:\n            print('Unable to find FASTA formatted files...')\n            sys.exit(1)\n        if tmp_fasta_files:\n            for f in tmp_fasta_files:\n                taxon_name = f.rpartition(\"/\")[-1].partition(\".\")[0]\n                save_isoforms(\n                        f,\n                        taxon_name\n                        )"
+  },
+  {
     "objectID": "posts/March_Daily_Entries.html#discussion-2",
     "href": "posts/March_Daily_Entries.html#discussion-2",
     "title": "March 2026 Daily Entries",
@@ -126,8 +217,8 @@
     "text": "Overview\nTranslate codon sequences and filter out “bad” or incomplete sequences"
   },
   {
-    "objectID": "posts/March_Daily_Entries.html#goals-2",
-    "href": "posts/March_Daily_Entries.html#goals-2",
+    "objectID": "posts/March_Daily_Entries.html#goals-3",
+    "href": "posts/March_Daily_Entries.html#goals-3",
     "title": "March 2026 Daily Entries",
     "section": "Goals",
     "text": "Goals\n\nwrite script to ensure the following for each sequence:\n\nstarts with start codon and ends with stop codon\nlength is divisible by 3 (complete sets of codons)\nprotein translation\n\nupload to and run script in HPC"
@@ -152,34 +243,6 @@
     "title": "March 2026 Daily Entries",
     "section": "Next Steps",
     "text": "Next Steps\n\nTask 1\nTask 2\nTask 3"
-  },
-  {
-    "objectID": "posts/2026-02-18-goals.html",
-    "href": "posts/2026-02-18-goals.html",
-    "title": "Spring Semester Goals",
-    "section": "",
-    "text": "Spring 2026 goals\n\n\n\n\n\nStart writing introduction section of apicomplexa paper\nOutline and plan for honors thesis\nFrequent lab notebook entries detailing my independent and lab research\n\n\n\n\n\nContinue with BAT analysis and gene alignments\nGroup / collaborative genome lab project\nDevelop microscope and lab procedure expertise\nMaintain and document ciliate cultures\n\n\n\n\n\nSubmit Charles Center Summer Grant proposal\n\n\n\n\n\nSet up digital notebook\nDetermine timeline for summer and senior year honors research\nLots of reading for summer/honors project (APICOMPLEXA!!)\n\n\n\n\n\nUpdating my Notebook\nApicomplexan Genome Evolution\nCLI Tutorial\n\nbasic intro tutorial, index of commands, etc.\n\nHPC Tutorial\n\nbasic intro tutorial, index of commands, upload files, running scripts, etc.\n\nMicroscope image gallery"
-  },
-  {
-    "objectID": "posts/2026-02-18-goals.html#goals",
-    "href": "posts/2026-02-18-goals.html#goals",
-    "title": "Spring Semester Goals",
-    "section": "",
-    "text": "Start writing introduction section of apicomplexa paper\nOutline and plan for honors thesis\nFrequent lab notebook entries detailing my independent and lab research\n\n\n\n\n\nContinue with BAT analysis and gene alignments\nGroup / collaborative genome lab project\nDevelop microscope and lab procedure expertise\nMaintain and document ciliate cultures\n\n\n\n\n\nSubmit Charles Center Summer Grant proposal\n\n\n\n\n\nSet up digital notebook\nDetermine timeline for summer and senior year honors research\nLots of reading for summer/honors project (APICOMPLEXA!!)\n\n\n\n\n\nUpdating my Notebook\nApicomplexan Genome Evolution\nCLI Tutorial\n\nbasic intro tutorial, index of commands, etc.\n\nHPC Tutorial\n\nbasic intro tutorial, index of commands, upload files, running scripts, etc.\n\nMicroscope image gallery"
-  },
-  {
-    "objectID": "posts/HPC_Upload.html",
-    "href": "posts/HPC_Upload.html",
-    "title": "HPC Upload",
-    "section": "",
-    "text": "Step-by-Step\n\nStep 1: Log into HPC\n\nInput user\n\nssh shasan01@bora.sciclone.wm.edu\n\nInput password\n\n\n\nStep 2: Navigate to necessary directory and folder\ncd scr10\n\nchanges current working directory to a specific, high-performance “scratch” directory\n\npwd\n\ndisplays current path of directory you are currently in\n\nls \n\nlists all contents (files / subdirectories) of directory\n\ncd Api_Evo/\n\nmoves into desired folder\n\n\n\nStep 3: Upload new file\n\ngo to os terminal\n\nscp file_name.py shasan01@bora.sciclone.wm.edu:/sciclone/scr10/shasan01/Api_Evo/\n\nmoves file_name into the Api_Evo container\n\n\n\nStep 4: Create new shell script\nnano file_name.sh\n\nopens text editor\n\n#!/bin/bash\n#SBATCH --job-name=description\n#SBATCH --nodes=1\n#SBATCH --ntasks=1\n#SBATCH -t 1:00:00\n#SBATCH --mem=12G\npython file_name.py cds_files/ \n^O to save file enter ^X to exit\n\n\nStep 5: Submit job\nsbatch file_name.sh \nsqueue --me \ncat slurm\n\nchecks for errors in job submission / code script\n\nrm slurm\n\nremoves slurm file\nmake sure to remove for each time cat slurm is submitted"
-  },
-  {
-    "objectID": "posts/updating_my_notebook.html",
-    "href": "posts/updating_my_notebook.html",
-    "title": "Updating My Notebook",
-    "section": "",
-    "text": "Step-by-Step\n\nStep 1: Prepare terminal\n\nTerminal &gt; conda activate quarto\ncd Desktop\ncd XLab_AP\ncd Lab_Notebook_Peronal_Site\n\nShortcut: “cd Desk” tab autofills the rest of the folder name\n\n\nStep 2: Edit Post\n\nOpen Lab_Notebook_Peronal_Site folder in VS Code\nEdit or create .qmd file under “posts” subfolder\nSave file\n\n\n\nStep 3: Upload\n\nTerminal &gt; quarto render\nGitHub &gt; Code &gt; Add file &gt; Upload files\nUpload “posts” and “docs” subfolders\nAdd descriptive note (i.e. “Updating Notebook Post”) &gt; Commit changes\nWait until commit has fully loaded and has a check mark\n\nNote: different method due to inabililty to install git\n\n\nStep 4: Access Website\n\nGitHub &gt; Settings &gt; Pages\nClick link to website"
   },
   {
     "objectID": "index.html#about-me",
